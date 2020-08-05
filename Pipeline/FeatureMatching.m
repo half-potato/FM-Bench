@@ -1,7 +1,7 @@
-function FeatureMatching(wkdir, dataset, matcher)
+function FeatureMatching(basedir, wkdir, dataset, matcher)
 % Matching descriptors and save results
 
-dataset_dir = [wkdir 'Dataset/' dataset '/'];
+dataset_dir = [basedir 'Dataset/' dataset '/'];
 feature_dir = [wkdir 'Features/' dataset '/'];
 
 matches_dir = [wkdir 'Matches/' dataset '/'];
@@ -39,6 +39,25 @@ for idx = 1 : num_pairs
     descriptors_r = read_descriptors([path_r '.descriptors']);
     
     [X_l, X_r] = match_descriptors(keypoints_l, keypoints_r, descriptors_l, descriptors_r);
+    %{
+    indexPairs = matchFeatures(descriptors_l, descriptors_r);
+    size(keypoints_l)
+    size(keypoints_r)
+    max(indexPairs)
+    kpts_l = cornerPoints(keypoints_l(:, [2, 1]));
+    kpts_r = cornerPoints(keypoints_r(:, [2, 1]));
+    mpts_l = kpts_l(indexPairs(:, 1));
+    mpts_r = kpts_r(indexPairs(:, 2));
+    
+    mpts_l = cornerPoints(X_l(:, [1, 2]));
+    mpts_r = cornerPoints(X_r(:, [1, 2]));
+    
+    figure; ax = axes;
+    showMatchedFeatures(I1,I2,mpts_l,mpts_r,'montage','Parent',ax);
+    title(ax, 'Candidate point matches');
+    legend(ax, 'Matched points 1','Matched points 2');
+    w = waitforbuttonpress;
+    %}
     
     Matches{idx}.size_l = size_l;
     Matches{idx}.size_r = size_r;

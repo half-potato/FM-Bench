@@ -13,7 +13,6 @@ shape = fread(fid, 2, 'int32');
 keypoints = fread(fid, prod(shape), 'float32');
 keypoints = reshape(keypoints, [shape(2), shape(1)])';
 fclose(fid);
-
 assert(size(keypoints, 2) == 4);
 
 end

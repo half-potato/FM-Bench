@@ -2,9 +2,9 @@ clear; close all; clc;
 
 
 % Datasets = {'TUM', 'KITTI', 'Tanks_and_Temples', 'CPC'};
-Datasets = {'TUM'};
+Datasets = {'KITTI'};
 
-Methods = {'SIFT-RT-RANSAC'};
+Methods = {'SIFT', 'superpoint'};
 
 Errors = cell(length(Methods),length(Datasets));
 Inlier_rates = cell(length(Methods),length(Datasets));
@@ -14,8 +14,9 @@ for d = 1 : length(Datasets)
     for m = 1 : length(Methods)
         method = Methods{m};
         
-        results_dir = ['../Results/' dataset '/'];
-        filename = [results_dir method '.mat'];
+        results_dir = ['../output/' method '/Results/' dataset '/' method '-RANSAC'];
+        filename = [results_dir '.mat'];
+        disp(filename)
         Results = importdata(filename);        
         
         Error = -ones(length(Results), 1);
@@ -62,7 +63,7 @@ for d = 1 : length(Datasets)
     end
 end
 
-
+disp('Plotting');
 % Recall---(Error)
 num_pairs = 1000;
 X = linspace(0,0.2,20);

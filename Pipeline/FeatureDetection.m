@@ -1,11 +1,11 @@
-function FeatureDetection(wkdir, dataset)
+function FeatureDetection(basedir, wkdir, dataset)
 % Detect and save DoG keypoints
 
 disp('Detecting keypoints...');
-
-dataset_dir = [wkdir 'Dataset/' dataset '/'];
+dataset_dir = [basedir 'Dataset/' dataset '/'];
 
 feature_dir = [wkdir 'Features/' dataset '/'];
+
 if exist(feature_dir, 'dir') == 0
     mkdir(feature_dir);
 end

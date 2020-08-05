@@ -1,8 +1,8 @@
-function FeatureExtraction(wkdir, dataset)
+function FeatureExtraction(basedir, wkdir, dataset)
 % Extract and save SIFT descriptors
 disp('Extracting descriptors...');
 
-dataset_dir = [wkdir 'Dataset/' dataset '/'];
+dataset_dir = [basedir 'Dataset/' dataset '/'];
 
 feature_dir = [wkdir 'Features/' dataset '/'];
 if exist(feature_dir, 'dir') == 0

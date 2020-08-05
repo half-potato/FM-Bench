@@ -1,8 +1,8 @@
-function GeometryEstimation(wkdir, dataset, matcher, estimator)
+function GeometryEstimation(basedir, wkdir, dataset, matcher, estimator)
 % Matching descriptors and save results
 disp('Running FM estimation...');
 
-dataset_dir = [wkdir 'Dataset/' dataset '/'];
+dataset_dir = [basedir 'Dataset/' dataset '/'];
 matches_dir = [wkdir 'Matches/' dataset '/'];
 
 results_dir = [wkdir 'Results/' dataset '/'];
